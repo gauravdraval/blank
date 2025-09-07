@@ -8,10 +8,8 @@ export default buildConfig({
   admin: {
     user: Users.slug,
     components: {
-      // The BeforeDashboard component renders the 'welcome' block that you see after logging into your admin panel.
-      // Feel free to delete this at any time. Simply remove the line below and the import BeforeDashboard statement on line 5.
       beforeDashboard: [BeforeDashboard],
-    }
+    },
   },
   collections: [
     Users,
@@ -23,6 +21,11 @@ export default buildConfig({
     schemaOutputFile: path.resolve(__dirname, 'generated-schema.graphql'),
   },
   plugins: [
-    payloadCloud()
-  ]
+    payloadCloud(),
+  ],
+  db: {
+    url: process.env.MONGO_URL,  // ✅ use the env var that Coolify provides
+  },
+  secret: process.env.PAYLOAD_SECRET,  // ✅ ensure secret comes from env
+  serverURL: process.env.PAYLOAD_PUBLIC_URL || 'http://localhost:3000', // optional but good for healthcheck
 });
