@@ -9,7 +9,7 @@ export default buildConfig({
     user: Users.slug,
     components: {
       beforeDashboard: [BeforeDashboard],
-    },
+    }
   },
   collections: [
     Users,
@@ -21,11 +21,6 @@ export default buildConfig({
     schemaOutputFile: path.resolve(__dirname, 'generated-schema.graphql'),
   },
   plugins: [
-    payloadCloud(),
-  ],
-  db: {
-    url: process.env.MONGO_URL,  // ✅ use the env var that Coolify provides
-  },
-  secret: process.env.PAYLOAD_SECRET,  // ✅ ensure secret comes from env
-  serverURL: process.env.PAYLOAD_PUBLIC_URL || 'http://localhost:3000', // optional but good for healthcheck
+    payloadCloud()
+  ]
 });
